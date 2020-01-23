@@ -82,8 +82,8 @@ public class Attacker : MonoBehaviour
             isMove = false;
             Attacker m = collision.gameObject.GetComponent<Attacker>();
             if (m != null) m.underAttack = attack;
-            // Defender d = collision.gameObject.GetComponent<Defender>();
-            // if (d != null) d.underAttack = attack;
+            Defender d = collision.gameObject.GetComponent<Defender>();
+            if (d != null) d.underAttack = attack;
 
         }
     }
