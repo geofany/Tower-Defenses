@@ -13,30 +13,33 @@ public class DragDrop : MonoBehaviour
     [HideInInspector]
     public bool follow = true;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     private void Update()
     {
-        if (follow){
+        if (follow)
+        {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
             transform.position = curPosition;
-            if (Input.GetMouseButtonUp(0)){
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (transform.position.x < 0 && transform.position.y > -2f){
+
+                
                 follow = false;
                 Data.coin -= cost;
                 foreach (Behaviour childComponent in GetComponentsInChildren<Behaviour>())
                 childComponent.enabled = true;
+                }
 
                 
 
-            }
+            
             else {
                 Destroy(gameObject);
                 Debug.Log("Meletakkan area yang tidak di izinkan");
+            }
             }
         }
     }
